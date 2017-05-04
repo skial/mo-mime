@@ -1,0 +1,28 @@
+-cp src
+-cp tests
+
+-lib mo
+-lib utest
+
+-main Main
+--no-traces
+
+-dce full
+
+-D analyzer-optimize
+
+--each
+
+-neko bin/mime.n
+
+--next
+
+-js bin/mime.js
+
+--next
+
+-python bin/py/mime.py
+
+--next
+
+-cs bin/cs

@@ -1,0 +1,15 @@
+{
+  "name": "mo-mime",
+  "license": "MIT",
+  "classPath": "src",
+  "tags": ["uhu", "uhx", "mo", "lexer", "ast", "parser", "mime"],
+  "description": "A mime lexer and parser.",
+  "contributors": ["skial"],
+  "releasenote": "Initial Release",
+  "version": "0.0.1-alpha",
+  "url": "https://github.com/skial/mo-mime",
+  "dependencies": {
+	"mo": "",
+    "utest": ""
+  }
+}
