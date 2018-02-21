@@ -32,7 +32,7 @@ class Lexer extends hxparse.Lexer {
 	
 	public static var root = Mo.rules( [
 	'[ \r\n\t]*' => lexer.token( root ),
-	'[a-zA-Z]+\\/' => Keyword( Toplevel( lexer.current.substring(0, lexer.current.length - 1).toLowerCase() ) ),
+	'[a-zA-Z\\-]+\\/' => Keyword( Toplevel( lexer.current.substring(0, lexer.current.length - 1).toLowerCase() ) ),
 	'[a-zA-Z]+' => Keyword( Subtype( lexer.current ) ),
 	'([a-zA-Z0-9\\-]+\\.?)+' => Keyword( Tree( lexer.current ) ),
 	'\\+[a-zA-Z0-9]+' => Keyword( Suffix( lexer.current.substring(1, lexer.current.length) ) ),

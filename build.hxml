@@ -23,6 +23,6 @@
 
 -python bin/py/mime.py
 
---next
+#--next
 
--cs bin/cs
+#-cs bin/cs
