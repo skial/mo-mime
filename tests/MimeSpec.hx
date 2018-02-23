@@ -111,6 +111,15 @@ import uhx.mo.mime.Lexer;
 		Assert.isTrue( m[1].match( Keyword(Tree('vnd.a')) ) );
 		Assert.isTrue( m[2].match( Keyword(Suffix('xml')) ) );
 	}
+
+	public function testTree_suffixMimeDB() {
+		var m = parse( 'application/geo+json-seq' );
+		
+		Assert.equals( 3, m.length );
+		Assert.isTrue( m[0].match( Keyword(Toplevel('application')) ) );
+		Assert.isTrue( m[1].match( Keyword(Subtype('geo')) ) );
+		Assert.isTrue( m[2].match( Keyword(Suffix('json-seq')) ) );
+	}
 	
 	public function testTree_withParameter() {
 		var m = parse( 'application/vnd.a; charset=UTF-8' );

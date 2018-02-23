@@ -5,7 +5,7 @@
 -lib utest
 
 -main Main
---no-traces
+#--no-traces
 
 -dce full
 
@@ -16,6 +16,9 @@
 -neko bin/mime.n
 
 --next
+
+-D js-es=6
+-D js-enums-as-objects
 
 -js bin/mime.js
 

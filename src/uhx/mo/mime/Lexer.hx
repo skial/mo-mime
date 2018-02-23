@@ -35,7 +35,7 @@ class Lexer extends hxparse.Lexer {
 	'[a-zA-Z\\-]+\\/' => Keyword( Toplevel( lexer.current.substring(0, lexer.current.length - 1).toLowerCase() ) ),
 	'[a-zA-Z]+' => Keyword( Subtype( lexer.current ) ),
 	'([a-zA-Z0-9\\-]+\\.?)+' => Keyword( Tree( lexer.current ) ),
-	'\\+[a-zA-Z0-9]+' => Keyword( Suffix( lexer.current.substring(1, lexer.current.length) ) ),
+	'\\+[a-zA-Z0-9\\-]+' => Keyword( Suffix( lexer.current.substring(1, lexer.current.length) ) ),
 	'; +[a-zA-Z0-9\\-]+=[a-zA-Z0-9\\-]+' => {
 		var pair = lexer.current.substring(1, lexer.current.length).trim().split( '=' );
 		Keyword( Parameter( pair[0], pair[1] ) );
