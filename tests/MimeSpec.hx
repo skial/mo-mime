@@ -20,8 +20,9 @@ import uhx.mo.mime.Lexer;
 		var results = [];
 		var lexer = new Lexer( ByteData.ofString( value ), 'mime-spec' );
 		
-		try while (true) {
-			results.push( lexer.token( Lexer.root ) );
+		try while (true) switch lexer.token( Lexer.root ) {
+			case EOF: break;
+			case token: results.push( token );
 			
 		} catch (e:Eof) { } catch (e:Dynamic) {
 			trace( e );

@@ -39,7 +39,8 @@ class Lexer extends hxparse.Lexer {
 	'; +[a-zA-Z0-9\\-]+=[a-zA-Z0-9\\-]+' => {
 		var pair = lexer.current.substring(1, lexer.current.length).trim().split( '=' );
 		Keyword( Parameter( pair[0], pair[1] ) );
-	}
+	},
+	"" => EOF
 	] );
 	
 }
