@@ -20,12 +20,10 @@ import uhx.mo.mime.Lexer;
 		var results = [];
 		var lexer = new Lexer( ByteData.ofString( value ), 'mime-spec' );
 		
-		try while (true) switch lexer.token( Lexer.root ) {
+		while (true) switch lexer.token( Lexer.root ) {
 			case EOF: break;
 			case token: results.push( token );
 			
-		} catch (e:Eof) { } catch (e:Dynamic) {
-			trace( e );
 		}
 		
 		return results;
@@ -120,6 +118,15 @@ import uhx.mo.mime.Lexer;
 		Assert.isTrue( m[0].match( Keyword(Toplevel('application')) ) );
 		Assert.isTrue( m[1].match( Keyword(Subtype('geo')) ) );
 		Assert.isTrue( m[2].match( Keyword(Suffix('json-seq')) ) );
+
+	}
+
+	public function testTree_characters() {
+		var m = parse ( 'application/vnd.ntt-local.sip-ta_remote' );
+		
+		Assert.equals( 2, m.length );
+		Assert.isTrue( m[0].match( Keyword(Toplevel('application')) ) );
+		Assert.isTrue( m[1].match( Keyword(Tree('vnd.ntt-local.sip-ta_remote')) ) );
 	}
 	
 	public function testTree_withParameter() {
