@@ -1,6 +1,7 @@
 package uhx.mo.mime;
 
 import haxe.io.Eof;
+import uhx.mo.Token;
 import byte.ByteData;
 import uhx.mo.mime.Lexer;
 
