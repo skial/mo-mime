@@ -47,9 +47,9 @@ enum MimeKeywords {
 
 	@:to private inline function asString():String {
 		return switch this {
-			case Vendor: Vnd;
-			case Personal: Prs;
-			case Unregistered: X;
+			case Vendor: 'vnd.';
+			case Personal: 'prs.';
+			case Unregistered: 'x.';
 			case _: '';
 		}
 	}
