@@ -67,7 +67,7 @@ enum MimeKeywords {
 	var X = 'x\\.';
 
 	var _Standards = '[$Chars]+';
-	var _Tree = '([$Chars]+\\.)+';
+	var _Tree = '([$Chars]+\\.)+([$Chars]+\\.?)*';
 	var _Vnd = '$Vnd[$Chars]*([$Chars]+\\.?)*';
 	var _Prs = '$Prs[$Chars]*([$Chars]+\\.?)*';
 	var _X = '$X[$Chars]*([$Chars]+\\.?)*';
