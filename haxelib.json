@@ -9,7 +9,7 @@
   "version": "0.0.1-alpha",
   "url": "https://github.com/skial/mo-mime",
   "dependencies": {
-	"mo": "",
+    "mo": "",
     "utest": ""
   }
 }

@@ -9,7 +9,7 @@ class Main {
         var runner = new Runner();
         runner.addCase( new MimeSpec() );
         Report.create( runner );
-		runner.run();
+        runner.run();
     }
 
 }

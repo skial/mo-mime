@@ -20,12 +20,9 @@ class Parser {
 		var lexer = new Lexer( bytes, name );
 		var tokens = [];
 		
-		try while (true) switch lexer.token( Lexer.root ) {
+		while (true) switch lexer.token( Lexer.root ) {
 			case EOF: break;
 			case token: tokens.push( token );
-			
-		} catch (e:Eof) { } catch (e:Dynamic) {
-			trace( e );
 		}
 		
 		return tokens;
