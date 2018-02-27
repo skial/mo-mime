@@ -17,8 +17,7 @@ using StringTools;
  */
 
 enum MimeKeywords {
-    Toplevel(name:String);
-    //Tree(name:String);
+    Toplevel(name:MimeToplevel);
     Tree(type:MimeTree, subtype:String);
     Subtype(name:String);
     Suffix(name:String);

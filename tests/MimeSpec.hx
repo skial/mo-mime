@@ -53,7 +53,7 @@ import uhx.mo.mime.Parser;
         var m = parse( 'text/plain; charset=UTF-8' );
         
         Assert.isTrue( m.length == 3 );
-        Assert.isTrue( m[0].match( Keyword(Toplevel('text')) ) );
+        Assert.isTrue( m[0].match( Keyword(Toplevel(Text)) ) );
         Assert.isTrue( m[1].match( Keyword(Subtype('plain')) ) );
         Assert.isTrue( m[2].match( Keyword(Parameter('charset', 'UTF-8' )) ) );
     }
@@ -72,7 +72,7 @@ import uhx.mo.mime.Parser;
         var m = parse( 'text/plain +xml; charset=UTF-8; NaMe123=vAlUe456' );
         
         Assert.isTrue( m.length == 5 );
-        Assert.isTrue( m[0].match( Keyword(Toplevel('text')) ) );
+        Assert.isTrue( m[0].match( Keyword(Toplevel(Text)) ) );
         Assert.isTrue( m[1].match( Keyword(Subtype('plain')) ) );
         Assert.isTrue( m[2].match( Keyword(Suffix('xml')) ) );
         Assert.isTrue( m[3].match( Keyword(Parameter('charset', 'UTF-8' )) ) );
@@ -83,7 +83,7 @@ import uhx.mo.mime.Parser;
         var m = parse( 'application/vnd.a' );
         
         Assert.isTrue( m.length == 2 );
-        Assert.isTrue( m[0].match( Keyword(Toplevel('application')) ) );
+        Assert.isTrue( m[0].match( Keyword(Toplevel(Application)) ) );
         Assert.isTrue( m[1].match( Keyword(Tree(Vendor, 'a')) ) );
     }
     
@@ -130,7 +130,7 @@ import uhx.mo.mime.Parser;
         var m = parse( 'audio/amr-wb+' );
 
         Assert.equals( 3, m.length );
-        Assert.isTrue( m[0].match( Keyword(Toplevel('audio')) ) );
+        Assert.isTrue( m[0].match( Keyword(Toplevel(Audio)) ) );
         Assert.isTrue( m[1].match( Keyword(Subtype('amr-wb')) ) );
         Assert.isTrue( m[2].match( Keyword(Suffix('')) ) );
     }
@@ -158,7 +158,7 @@ import uhx.mo.mime.Parser;
         var m = parse( 'application/vnd.a +xml; charset=UTF-8; NaMe123=vAlUe456' );
         
         Assert.isTrue( m.length == 5 );
-        Assert.isTrue( m[0].match( Keyword(Toplevel('application')) ) );
+        Assert.isTrue( m[0].match( Keyword(Toplevel(Application)) ) );
         Assert.isTrue( m[1].match( Keyword(Tree(Vendor, 'a')) ) );
         Assert.isTrue( m[2].match( Keyword(Suffix('xml')) ) );
         Assert.isTrue( m[3].match( Keyword(Parameter('charset', 'UTF-8' )) ) );
