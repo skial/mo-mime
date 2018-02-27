@@ -44,14 +44,16 @@ enum MimeKeywords {
 	var Personal = 2;
 	var Unregistered = 3;
 	var Unknown = 4;
-}
 
-/*enum MimeTrees {
-	Standard(name:String);
-	Vendor(name:String);
-	Personal(name:String);
-	Unregistered(name:String);
-}*/
+	@:to private inline function asString():String {
+		return switch this {
+			case Vendor: Vnd;
+			case Personal: Prs;
+			case Unregistered: X;
+			case _: '';
+		}
+	}
+}
 
 @:enum @:forward private abstract Rules(String) to String {
 	var Whitespace = ' \r\n\t';
@@ -78,19 +80,6 @@ class Lexer extends hxparse.Lexer {
 	public function new(content:ByteData, name:String) {
 		super( content, name );
 	}
-	
-	/*public static var root = Mo.rules( [
-	'[ \r\n\t]+' => lexer.token( root ),
-	'[a-zA-Z\\-_]+\\/' => Keyword( Toplevel( lexer.current.substring(0, lexer.current.length - 1).toLowerCase() ) ),
-	'[a-zA-Z\\-_]+' => Keyword( Subtype( lexer.current ) ),
-	'([a-zA-Z0-9\\-\\._]+)+\\.' => Keyword( Tree( lexer.current ) ),
-	'\\+[a-zA-Z0-9\\-_]+' => Keyword( Suffix( lexer.current.substring(1, lexer.current.length) ) ),
-	'; +[a-zA-Z0-9\\-_]+=[a-zA-Z0-9\\-]+' => {
-		var pair = lexer.current.substring(1, lexer.current.length).trim().split( '=' );
-		Keyword( Parameter( pair[0], pair[1] ) );
-	},
-	"" => EOF
-	] );*/
 
 	public static var root = Mo.rules( [
 		'[$Whitespace]+' => lexer.token( root ),
