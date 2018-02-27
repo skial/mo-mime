@@ -5,7 +5,7 @@
 -lib utest
 
 -main Main
-#--no-traces
+--no-traces
 
 -dce full
 
@@ -32,6 +32,7 @@
 
 --next
 
+-D hl-check
 -hl bin/mime.hl
 
 #--next
