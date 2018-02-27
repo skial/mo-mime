@@ -90,7 +90,7 @@ import uhx.mo.mime.Lexer;
 		
 		Assert.isTrue( m.length == 2 );
 		Assert.isTrue( m[0].match( Keyword(Toplevel('application')) ) );
-		Assert.isTrue( m[1].match( Keyword(Tree('vnd.a')) ) );
+		Assert.isTrue( m[1].match( Keyword(Tree(Vendor, 'a')) ) );
 	}
 	
 	public function testTree_withSuffix() {
@@ -98,7 +98,7 @@ import uhx.mo.mime.Lexer;
 		
 		Assert.isTrue( m.length == 3 );
 		Assert.isTrue( m[0].match( Keyword(Toplevel('application')) ) );
-		Assert.isTrue( m[1].match( Keyword(Tree('vnd.a')) ) );
+		Assert.isTrue( m[1].match( Keyword(Tree(Vendor, 'a')) ) );
 		Assert.isTrue( m[2].match( Keyword(Suffix('xml')) ) );
 	}
 	
@@ -107,7 +107,7 @@ import uhx.mo.mime.Lexer;
 		
 		Assert.isTrue( m.length == 3 );
 		Assert.isTrue( m[0].match( Keyword(Toplevel('application')) ) );
-		Assert.isTrue( m[1].match( Keyword(Tree('vnd.a')) ) );
+		Assert.isTrue( m[1].match( Keyword(Tree(Vendor, 'a')) ) );
 		Assert.isTrue( m[2].match( Keyword(Suffix('xml')) ) );
 	}
 
@@ -126,7 +126,14 @@ import uhx.mo.mime.Lexer;
 		
 		Assert.equals( 2, m.length );
 		Assert.isTrue( m[0].match( Keyword(Toplevel('application')) ) );
-		Assert.isTrue( m[1].match( Keyword(Tree('vnd.ntt-local.sip-ta_remote')) ) );
+		Assert.isTrue( m[1].match( Keyword(Tree(Vendor, 'ntt-local.sip-ta_remote')) ) );
+
+		var m = parse( 'audio/amr-wb+' );
+
+		Assert.equals( 3, m.length );
+		Assert.isTrue( m[0].match( Keyword(Toplevel('audio')) ) );
+		Assert.isTrue( m[1].match( Keyword(Subtype('amr-wb')) ) );
+		Assert.isTrue( m[2].match( Keyword(Suffix('')) ) );
 	}
 	
 	public function testTree_withParameter() {
@@ -134,7 +141,7 @@ import uhx.mo.mime.Lexer;
 		
 		Assert.isTrue( m.length == 3 );
 		Assert.isTrue( m[0].match( Keyword(Toplevel('application')) ) );
-		Assert.isTrue( m[1].match( Keyword(Tree('vnd.a')) ) );
+		Assert.isTrue( m[1].match( Keyword(Tree(Vendor, 'a')) ) );
 		Assert.isTrue( m[2].match( Keyword(Parameter('charset', 'UTF-8')) ) );
 	}
 	
@@ -143,7 +150,7 @@ import uhx.mo.mime.Lexer;
 		
 		Assert.isTrue( m.length == 4 );
 		Assert.isTrue( m[0].match( Keyword(Toplevel('application')) ) );
-		Assert.isTrue( m[1].match( Keyword(Tree('vnd.a')) ) );
+		Assert.isTrue( m[1].match( Keyword(Tree(Vendor, 'a')) ) );
 		Assert.isTrue( m[2].match( Keyword(Parameter('charset', 'UTF-8')) ) );
 		Assert.isTrue( m[3].match( Keyword(Parameter('NaMe123', 'vAlUe456' )) ) );
 	}
@@ -153,7 +160,7 @@ import uhx.mo.mime.Lexer;
 		
 		Assert.isTrue( m.length == 5 );
 		Assert.isTrue( m[0].match( Keyword(Toplevel('application')) ) );
-		Assert.isTrue( m[1].match( Keyword(Tree('vnd.a')) ) );
+		Assert.isTrue( m[1].match( Keyword(Tree(Vendor, 'a')) ) );
 		Assert.isTrue( m[2].match( Keyword(Suffix('xml')) ) );
 		Assert.isTrue( m[3].match( Keyword(Parameter('charset', 'UTF-8' )) ) );
 		Assert.isTrue( m[4].match( Keyword(Parameter('NaMe123', 'vAlUe456' )) ) );
@@ -164,7 +171,7 @@ import uhx.mo.mime.Lexer;
 		
 		Assert.isTrue( m.length == 2 );
 		Assert.isTrue( m[0].match( Keyword(Toplevel('application')) ) );
-		Assert.isTrue( m[1].match( Keyword(Tree('vnd.a.b.1.2.3.opendocument')) ) );
+		Assert.isTrue( m[1].match( Keyword(Tree( Vendor, 'a.b.1.2.3.opendocument')) ) );
 	}
 	
 }
