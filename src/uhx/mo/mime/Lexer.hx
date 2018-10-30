@@ -2,8 +2,9 @@ package uhx.mo.mime;
 
 import uhx.mo.Token;
 import byte.ByteData;
-import hxparse.Lexer;
+import hxparse.Ruleset;
 import haxe.ds.StringMap;
+import hxparse.Lexer as HxparseLexer;
 
 using StringTools;
 
@@ -74,26 +75,26 @@ enum MimeKeywords {
     var _Parameters = '; +$_Standards=$_Standards';
 }
 
-class Lexer extends hxparse.Lexer {
+class Lexer extends HxparseLexer {
 
     public function new(content:ByteData, name:String) {
         super( content, name );
     }
 
-    public static var root = Mo.rules( [
-        '[$Whitespace]+' => lexer.token( root ),
-        '[$Chars]+\\/' => Keyword( Toplevel( lexer.current.substring( 0, lexer.current.length-1 ).toLowerCase() ) ),
-        '$_Vnd' => Keyword( Tree( Vendor, lexer.current.substring( Vnd.length-1, lexer.current.length ) ) ),
-        '$_Prs' => Keyword( Tree( Personal, lexer.current.substring( Prs.length-1, lexer.current.length ) ) ),
-        '$_X' => Keyword( Tree( Unregistered, lexer.current.substring( X.length-1, lexer.current.length ) ) ),
-        '$_Tree' => Keyword( Tree( Unknown, lexer.current ) ),
-        '$_Standards' => Keyword( Subtype( lexer.current ) ),
-        '$_Suffix' => Keyword( Suffix( lexer.current.substring(1, lexer.current.length) ) ),
-        '$_Parameters' => {
+    public static var root:Ruleset<Lexer, Token<MimeKeywords>> = Mo.rules( [
+        '[$Whitespace]+' => lexer -> lexer.token( root ),
+        '[$Chars]+\\/' => lexer -> Keyword( Toplevel( lexer.current.substring( 0, lexer.current.length-1 ).toLowerCase() ) ),
+        '$_Vnd' => lexer -> Keyword( Tree( Vendor, lexer.current.substring( Vnd.length-1, lexer.current.length ) ) ),
+        '$_Prs' => lexer -> Keyword( Tree( Personal, lexer.current.substring( Prs.length-1, lexer.current.length ) ) ),
+        '$_X' => lexer -> Keyword( Tree( Unregistered, lexer.current.substring( X.length-1, lexer.current.length ) ) ),
+        '$_Tree' => lexer -> Keyword( Tree( Unknown, lexer.current ) ),
+        '$_Standards' => lexer -> Keyword( Subtype( lexer.current ) ),
+        '$_Suffix' => lexer -> Keyword( Suffix( lexer.current.substring(1, lexer.current.length) ) ),
+        '$_Parameters' => lexer -> {
             var pair = lexer.current.substring(1, lexer.current.length).trim().split( '=' );
             Keyword( Parameter( pair[0], pair[1] ) );
         },
-        '' => EOF
+        '' => _ -> EOF
     ] );
     
 }
