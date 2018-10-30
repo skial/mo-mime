@@ -1,6 +1,7 @@
 package uhx.mo.mime;
 
 import haxe.io.Eof;
+import uhx.mo.Token;
 import byte.ByteData;
 import uhx.mo.mime.Lexer;
 
@@ -19,11 +20,9 @@ class Parser {
 		var lexer = new Lexer( bytes, name );
 		var tokens = [];
 		
-		try while (true) {
-			tokens.push( lexer.token( Lexer.root ) );
-			
-		} catch (e:Eof) { } catch (e:Dynamic) {
-			trace( e );
+		while (true) switch lexer.token( Lexer.root ) {
+			case EOF: break;
+			case token: tokens.push( token );
 		}
 		
 		return tokens;

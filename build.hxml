@@ -5,7 +5,7 @@
 -lib utest
 
 -main Main
---no-traces
+#--no-traces
 
 -dce full
 
@@ -17,12 +17,25 @@
 
 --next
 
+-D js-es=6
+-D js-enums-as-objects
+
 -js bin/mime.js
 
 --next
 
 -python bin/py/mime.py
 
---next
+#--next
 
--cs bin/cs
+#-cs bin/cs
+
+#--next
+
+#-D hl-check
+#-hl bin/mime.hl
+
+#--next
+
+#-lib hashlink
+#-hl bin/hl/_mime.c
